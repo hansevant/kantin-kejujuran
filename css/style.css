@@ -1,0 +1,33 @@
+/* Scroll bar */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, darkred 0%, red 100%);
+    border-radius: 5px;
+}
+
+/* Main CSS */
+
+body{
+    height: 100vh;
+}
+
+main .main-card{
+    overflow-y: scroll; height:85vh; overflow-x:hidden;
+}
+
+img.product-img{
+    object-fit:cover; 
+    height:250px; 
+    width:250px;
+}
+
+.btn-sell{
+    width: 60px;
+}
