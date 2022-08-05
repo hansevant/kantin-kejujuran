@@ -13,7 +13,7 @@
 <body class="bg-danger bg-gradient pt-5">
 
     <main>
-        <div class="col-6 mx-auto my-0">
+        <div class="col-lg-6  mx-auto my-0 p-2">
             <div class="card main-card">
                 <h2 class="text-center mt-3">Kantin Kejujuran</h2>
 
@@ -56,34 +56,40 @@
                             $queries = mysqli_query($conn, "SELECT * FROM products WHERE product_sold = 0");
                         }
 
-                        while ($data = mysqli_fetch_array($queries)) {
-                            // formatting prices
-                            $formatted = number_format($data['product_price'], 0, '.', ',');
-                            $prefix = 'Rp. ';
-                            $suffix = '.00';
-                            $balance = $prefix . $formatted . $suffix;
+                        if ($queries->num_rows > 0) {
+                            while ($data = mysqli_fetch_array($queries)) {
+                                // formatting prices
+                                $formatted = number_format($data['product_price'], 0, '.', ',');
+                                $prefix = 'Rp. ';
+                                $suffix = '.00';
+                                $balance = $prefix . $formatted . $suffix;
+
+                                $date = date('j M Y g:i A', strtotime($data['created_at']));
                         ?>
 
-                            <div class="card mt-3">
-                                <div class=" row g-0">
-                                    <div class="col-md-4">
-                                        <img src="imgs/<?= $data['product_image'] ?>" alt="Product Image" class="img-fluid rounded-start product-img">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= $data['product_name'] ?></h5>
-                                            <p class="card-text"><?= $data['product_description'] ?></p>
-                                            <p class="card-text fw-semibold text-danger"><?= $balance ?></p>
-                                            <p class="card-text"><small class="text-muted">Added at <?= $data['created_at'] ?></small></p>
-                                            <a href="functions/buy.php?id=<?= $data['product_id'] ?>">
-                                                <button class="btn btn-warning btn-sm float-end mb-3 fw-semibold" onclick="alert('Berhasil Membeli')">Buy this item</button>
-                                            </a>
+                                <div class="card mt-3">
+                                    <div class=" row g-0">
+                                        <div class="col-4">
+                                            <img src="imgs/<?= $data['product_image'] ?>" alt="Product Image" class="img-fluid rounded-start product-img">
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?= $data['product_name'] ?></h5>
+                                                <p class="card-text"><?= $data['product_description'] ?></p>
+                                                <p class="card-text fw-semibold text-danger"><?= $balance ?></p>
+                                                <p class="card-text"><small class="text-muted">Added at <?= $date ?></small></p>
+                                                <a href="functions/buy.php?id=<?= $data['product_id'] ?>">
+                                                    <button class="btn btn-warning btn-sm float-end mb-3 fw-semibold" onclick="alert('Berhasil Membeli')">Buy this item</button>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        <?php } ?>
+                        <?php }
+                        } else {
+                            echo "0 results";
+                        } ?>
 
                     </div>
                 </div>

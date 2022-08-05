@@ -12,6 +12,24 @@
     border-radius: 5px;
 }
 
+/* Drag */
+
+#drag {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+  }
+  
+  #dragheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+  }
+
 /* Main CSS */
 
 body{
@@ -31,3 +49,18 @@ img.product-img{
 .btn-sell{
     width: 60px;
 }
+
+/* responsive */
+
+@media screen and (max-width: 425px) {
+    .card .card-body .card-title{
+        font-size: 16px;
+    }
+    .card .card-body .card-text{
+        font-size: 12px;
+    }
+    .card .card-body button{
+        font-size: 12px;
+    }
+}
+  
